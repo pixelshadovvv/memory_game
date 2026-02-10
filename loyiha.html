@@ -1,0 +1,2485 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Project | Loyiha mualliflari</title>
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,.08);
+  --text:#fff;
+  --accent:#38bdf8;
+}
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.5s;
+}
+
+button{
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+  flex-wrap:wrap;
+}
+
+.toggle{
+  background:var(--card);
+  border:none;
+  color:var(--text);
+  padding:10px 18px;
+  border-radius:20px;
+}
+
+.clock{
+  font-size:1.1rem;
+  background:var(--card);
+  padding:6px 12px;
+  border-radius:12px;
+  color:var(--accent);
+  font-weight:500;
+  margin-top:10px;
+}
+
+/* ================= AUTHORS ================= */
+.authors{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.authors h1{
+  margin-bottom:25px;
+  font-size:2.5rem;
+  background:linear-gradient(90deg,#38bdf8,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.author-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.author-card{
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s, box-shadow .4s, transform .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.author-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,.25),transparent);
+  opacity:0;
+  transition:.5s;
+}
+
+.author-card:hover::before{
+  opacity:1;
+}
+
+.author-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--accent);
+  transition:.4s, box-shadow .3s;
+}
+
+.author-card:hover .avatar{
+  transform:scale(1.1);
+  box-shadow:0 0 20px var(--accent);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= FORM ================= */
+.form-box{
+  max-width:500px;
+  margin:80px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  transition:.4s;
+}
+
+.form-box input{
+  width:100%;
+  margin-bottom:15px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ================= GAMES ================= */
+.games{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  transition:.4s, box-shadow .4s, transform .4s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(56,189,248,.4);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:80px 20px 40px;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.15), transparent 60%),
+    linear-gradient(180deg, #020617, #000);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.footer-card{
+  background:rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:35px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(0,0,0,.45);
+  transition:.45s ease, transform .4s, box-shadow .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.footer-card:hover::before{
+  opacity:1;
+}
+
+.footer-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.footer-card h4{
+  font-size:1.2rem;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
+
+.footer-highlight{
+  color:var(--accent);
+  font-weight:500;
+}
+
+.copy{
+  text-align:center;
+  margin-top:60px;
+  font-size:.85rem;
+  opacity:.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .author-grid{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+  .games-grid{
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  }
+  .authors h1{
+    font-size:2rem;
+  }
+  .footer-card{
+    padding:25px;
+  }
+}
+
+@media(max-width:480px){
+  .author-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .games-grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+  .authors h1{
+    font-size:1.7rem;
+  }
+  .footer-card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🚀 Ultimate Project</h2>
+  <div>
+    <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+    <div class="clock" id="clock">00:00:00 | 00.00.0000</div>
+  </div>
+</header>
+
+<section class="authors">
+  <h1>Loyiha mualliflari</h1>
+  <div class="author-grid" id="authors"></div>
+</section>
+
+<section class="form-box">
+  <h3>➕ Muallif qo‘shish</h3>
+  <input id="name" placeholder="Ism">
+  <input id="role" placeholder="Yo‘nalish">
+  <input id="img" placeholder="Rasm URL">
+  <button onclick="addAuthor()">Qo‘shish</button>
+</section>
+
+<section class="games">
+  <h2>🎮 O‘yinlar menyusi</h2>
+  <div class="games-grid">
+    <div class="game">Memory Game</div>
+    <div class="game">IQ Test</div>
+    <div class="game">Logic Puzzle</div>
+    <div class="game">Cyber Quiz</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-card">
+      <h4>📌 Sayt hujjati</h4>
+      <p>
+        Ushbu veb-loyiha <span class="footer-highlight">ta’limiy, intellektual va
+        innovatsion</span> yo‘nalishda ishlab chiqilgan bo‘lib,
+        foydalanuvchilarning mantiqiy fikrlashini rivojlantirishga xizmat qiladi.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>💻 Texnologiyalar</h4>
+      <p>
+        Loyiha <span class="footer-highlight">Visual Studio Code</span> muhitida
+        yaratilgan.<br><br>
+        Dasturlash tillari:
+        <span class="footer-highlight">HTML5</span>,
+        <span class="footer-highlight">CSS3</span>,
+        <span class="footer-highlight">JavaScript (Vanilla)</span>.<br>
+        Hech qanday framework ishlatilmagan.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>🎯 Maqsad va auditoriya</h4>
+      <p>
+        Ushbu sayt <span class="footer-highlight">o‘quvchilar, yosh dasturchilar,
+        o‘qituvchilar</span> hamda texnologiyaga qiziquvchi barcha foydalanuvchilar
+        uchun mo‘ljallangan.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © <span id="year"></span> Ultimate Project — Barcha huquqlar himoyalangan
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* ===== CLOCK & DATE ===== */
+function updateClock(){
+  const now=new Date();
+  let h=String(now.getHours()).padStart(2,'0');
+  let m=String(now.getMinutes()).padStart(2,'0');
+  let s=String(now.getSeconds()).padStart(2,'0');
+  let d=String(now.getDate()).padStart(2,'0');
+  let mo=String(now.getMonth()+1).padStart(2,'0');
+  let y=now.getFullYear();
+  document.getElementById("clock").textContent=`${h}:${m}:${s} | ${d}.${mo}.${y}`;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+/* ===== AUTHORS DATA ===== */
+let authors = JSON.parse(localStorage.getItem("authors")) || [
+  {name:"Azizbek",role:"Frontend & Game Developer",img:"images/azizbek.jpg"}
+];
+
+function render(){
+  const box=document.getElementById("authors");
+  box.innerHTML="";
+  authors.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="author-card";
+    div.innerHTML=`
+      <div class="avatar"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/120/38bdf8/000?text=No+Image'"></div>
+      <h3>${a.name}</h3>
+      <p>${a.role}</p>
+    `;
+    box.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),100);
+  });
+
+  document.querySelectorAll(".author-card").forEach(card=>{
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+    observer.observe(card);
+  });
+}
+
+function addAuthor(){
+  const nameInput=document.getElementById("name");
+  const roleInput=document.getElementById("role");
+  const imgInput=document.getElementById("img");
+  if(nameInput.value && roleInput.value && imgInput.value){
+    authors.push({
+      name:nameInput.value,
+      role:roleInput.value,
+      img:imgInput.value
+    });
+    localStorage.setItem("authors",JSON.stringify(authors));
+    render();
+    nameInput.value=""; roleInput.value=""; imgInput.value="";
+  }
+}
+
+render();
+
+/* ===== YEAR ===== */
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Project | Loyiha mualliflari</title>
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,.08);
+  --text:#fff;
+  --accent:#38bdf8;
+}
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.5s;
+}
+
+button{
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+
+.toggle{
+  background:var(--card);
+  border:none;
+  color:var(--text);
+  padding:10px 18px;
+  border-radius:20px;
+}
+
+/* ================= AUTHORS ================= */
+.authors{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.authors h1{
+  margin-bottom:25px;
+  font-size:2.5rem;
+  background:linear-gradient(90deg,#38bdf8,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.author-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.author-card{
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s, box-shadow .4s, transform .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.author-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,.25),transparent);
+  opacity:0;
+  transition:.5s;
+}
+
+.author-card:hover::before{
+  opacity:1;
+}
+
+.author-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--accent);
+  transition:.4s, box-shadow .3s;
+}
+
+.author-card:hover .avatar{
+  transform:scale(1.1);
+  box-shadow:0 0 20px var(--accent);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= FORM ================= */
+.form-box{
+  max-width:500px;
+  margin:80px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  transition:.4s;
+}
+
+.form-box input{
+  width:100%;
+  margin-bottom:15px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ================= GAMES ================= */
+.games{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  transition:.4s, box-shadow .4s, transform .4s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(56,189,248,.4);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:80px 20px 40px;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.15), transparent 60%),
+    linear-gradient(180deg, #020617, #000);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.footer-card{
+  background:rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:35px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(0,0,0,.45);
+  transition:.45s ease, transform .4s, box-shadow .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.footer-card:hover::before{
+  opacity:1;
+}
+
+.footer-card:ho<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Project | Loyiha mualliflari</title>
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,.08);
+  --text:#fff;
+  --accent:#38bdf8;
+}
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.5s;
+}
+
+button{
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+  flex-wrap:wrap;
+}
+
+.toggle{
+  background:var(--card);
+  border:none;
+  color:var(--text);
+  padding:10px 18px;
+  border-radius:20px;
+}
+
+.clock{
+  font-size:1.1rem;
+  background:var(--card);
+  padding:6px 12px;
+  border-radius:12px;
+  color:var(--accent);
+  font-weight:500;
+  margin-top:10px;
+}
+
+/* ================= AUTHORS ================= */
+.authors{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.authors h1{
+  margin-bottom:25px;
+  font-size:2.5rem;
+  background:linear-gradient(90deg,#38bdf8,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.author-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.author-card{
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s, box-shadow .4s, transform .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.author-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,.25),transparent);
+  opacity:0;
+  transition:.5s;
+}
+
+.author-card:hover::before{
+  opacity:1;
+}
+
+.author-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--accent);
+  transition:.4s, box-shadow .3s;
+}
+
+.author-card:hover .avatar{
+  transform:scale(1.1);
+  box-shadow:0 0 20px var(--accent);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= FORM ================= */
+.form-box{
+  max-width:500px;
+  margin:80px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  transition:.4s;
+}
+
+.form-box input{
+  width:100%;
+  margin-bottom:15px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ================= GAMES ================= */
+.games{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  transition:.4s, box-shadow .4s, transform .4s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(56,189,248,.4);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:80px 20px 40px;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.15), transparent 60%),
+    linear-gradient(180deg, #020617, #000);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.footer-card{
+  background:rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:35px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(0,0,0,.45);
+  transition:.45s ease, transform .4s, box-shadow .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.footer-card:hover::before{
+  opacity:1;
+}
+
+.footer-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.footer-card h4{
+  font-size:1.2rem;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
+
+.footer-highlight{
+  color:var(--accent);
+  font-weight:500;
+}
+
+.copy{
+  text-align:center;
+  margin-top:60px;
+  font-size:.85rem;
+  opacity:.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .author-grid{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+  .games-grid{
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  }
+  .authors h1{
+    font-size:2rem;
+  }
+  .footer-card{
+    padding:25px;
+  }
+}
+
+@media(max-width:480px){
+  .author-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .games-grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+  .authors h1{
+    font-size:1.7rem;
+  }
+  .footer-card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🚀 Ultimate Project</h2>
+  <div>
+    <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+    <div class="clock" id="clock">00:00:00 | 00.00.0000</div>
+  </div>
+</header>
+
+<section class="authors">
+  <h1>Loyiha mualliflari</h1>
+  <div class="author-grid" id="authors"></div>
+</section>
+
+<section class="form-box">
+  <h3>➕ Muallif qo‘shish</h3>
+  <input id="name" placeholder="Ism">
+  <input id="role" placeholder="Yo‘nalish">
+  <input id="img" placeholder="Rasm URL">
+  <button onclick="addAuthor()">Qo‘shish</button>
+</section>
+
+<section class="games">
+  <h2>🎮 O‘yinlar menyusi</h2>
+  <div class="games-grid">
+    <div class="game">Memory Game</div>
+    <div class="game">IQ Test</div>
+    <div class="game">Logic Puzzle</div>
+    <div class="game">Cyber Quiz</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-card">
+      <h4>📌 Sayt hujjati</h4>
+      <p>
+        Ushbu veb-loyiha <span class="footer-highlight">ta’limiy, intellektual va
+        innovatsion</span> yo‘nalishda ishlab chiqilgan bo‘lib,
+        foydalanuvchilarning mantiqiy fikrlashini rivojlantirishga xizmat qiladi.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>💻 Texnologiyalar</h4>
+      <p>
+        Loyiha <span class="footer-highlight">Visual Studio Code</span> muhitida
+        yaratilgan.<br><br>
+        Dasturlash tillari:
+        <span class="footer-highlight">HTML5</span>,
+        <span class="footer-highlight">CSS3</span>,
+        <span class="footer-highlight">JavaScript (Vanilla)</span>.<br>
+        Hech qanday framework ishlatilmagan.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>🎯 Maqsad va auditoriya</h4>
+      <p>
+        Ushbu sayt <span class="footer-highlight">o‘quvchilar, yosh dasturchilar,
+        o‘qituvchilar</span> hamda texnologiyaga qiziquvchi barcha foydalanuvchilar
+        uchun mo‘ljallangan.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © <span id="year"></span> Ultimate Project — Barcha huquqlar himoyalangan
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* ===== CLOCK & DATE ===== */
+function updateClock(){
+  const now=new Date();
+  let h=String(now.getHours()).padStart(2,'0');
+  let m=String(now.getMinutes()).padStart(2,'0');
+  let s=String(now.getSeconds()).padStart(2,'0');
+  let d=String(now.getDate()).padStart(2,'0');
+  let mo=String(now.getMonth()+1).padStart(2,'0');
+  let y=now.getFullYear();
+  document.getElementById("clock").textContent=`${h}:${m}:${s} | ${d}.${mo}.${y}`;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+/* ===== AUTHORS DATA ===== */
+let authors = JSON.parse(localStorage.getItem("authors")) || [
+  {name:"Azizbek",role:"Frontend & Game Developer",img:"images/azizbek.jpg"}
+];
+
+function render(){
+  const box=document.getElementById("authors");
+  box.innerHTML="";
+  authors.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="author-card";
+    div.innerHTML=`
+      <div class="avatar"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/120/38bdf8/000?text=No+Image'"></div>
+      <h3>${a.name}</h3>
+      <p>${a.role}</p>
+    `;
+    box.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),100);
+  });
+
+  document.querySelectorAll(".author-card").forEach(card=>{
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+    observer.observe(card);
+  });
+}
+
+function addAuthor(){
+  const nameInput=document.getElementById("name");
+  const roleInput=document.getElementById("role");
+  const imgInput=document.getElementById("img");
+  if(nameInput.value && roleInput.value && imgInput.value){
+    authors.push({
+      name:nameInput.value,
+      role:roleInput.value,
+      img:imgInput.value
+    });
+    localStorage.setItem("authors",JSON.stringify(authors));
+    render();
+    nameInput.value=""; roleInput.value=""; imgInput.value="";
+  }
+}
+
+render();
+
+/* ===== YEAR ===== */
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>ver{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.footer-card h4{
+  font-size:1.2rem;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
+
+.footer-highlight{
+  color:var(--accent);
+  font-weight:500;
+}
+
+.copy{
+  text-align:center;
+  margin-top:60px;
+  font-size:.85rem;
+  opacity:.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .author-grid{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+  .games-grid{
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  }
+  .authors h1{
+    font-size:2rem;
+  }
+  .footer-card{
+    padding:25px;
+  }
+}
+
+@media(max-width:480px){
+  .author-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .games-grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+  .authors h1{
+    font-size:1.7rem;
+  }
+  .footer-card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🚀 Ultimate Project</h2>
+  <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+</header>
+
+<section class="authors">
+  <h1>Loyiha mualliflari</h1>
+  <div class="author-grid" id="authors"></div>
+</section>
+
+<section class="form-box">
+  <h3>➕ Muallif qo‘shish</h3>
+  <input id="name" placeholder="Ism">
+  <input id="role" placeholder="Yo‘nalish">
+  <input id="img" placeholder="Rasm URL">
+  <button onclick="addAuthor()">Qo‘shish</button>
+</section>
+
+<section class="games">
+  <h2>🎮 O‘yinlar menyusi</h2>
+  <div class="games-grid">
+    <div class="game">Memory Game</div>
+    <div class="game">IQ Test</div>
+    <div class="game">Logic Puzzle</div>
+    <div class="game">Cyber Quiz</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-card">
+      <h4>📌 Sayt hujjati</h4>
+      <p>
+        Ushbu veb-loyiha <span class="footer-highlight">ta’limiy, intellektual va
+        innovatsion</span> yo‘nalishda ishlab chiqilgan bo‘lib,
+        foydalanuvchilarning mantiqiy fikrlashini rivojlantirishga xizmat qiladi.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>💻 Texnologiyalar</h4>
+      <p>
+        Loyiha <span class="footer-highlight">Visual Studio Code</span> muhitida
+        yaratilgan.<br><br>
+        Dasturlash tillari:
+        <span class="footer-highlight">HTML5</span>,
+        <span class="footer-highlight">CSS3</span>,
+        <span class="footer-highlight">JavaScript (Vanilla)</span>.<br>
+        Hech qanday framework ishlatilmagan.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>🎯 Maqsad va auditoriya</h4>
+      <p>
+        Ushbu sayt <span class="footer-highlight">o‘quvchilar, yosh dasturchilar,
+        o‘qituvchilar</span> hamda texnologiyaga qiziquvchi barcha foydalanuvchilar
+        uchun mo‘ljallangan.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © <span id="year"></span> Ultimate Project — Barcha huquqlar himoyalangan
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* ===== AUTHORS DATA ===== */
+let authors = JSON.parse(localStorage.getItem("authors")) || [
+  {name:"Azizbek",role:"Frontend & Game Developer",img:"images/azizbek.jpg"}
+];
+
+function render(){
+  const box=document.getElementById("authors");
+  box.innerHTML="";
+  authors.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="author-card";
+    div.innerHTML=`
+      <div class="avatar"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/120/38bdf8/000?text=No+Image'"></div>
+      <h3>${a.name}</h3>
+      <p>${a.role}</p>
+    `;
+    box.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),100);
+  });
+
+  document.querySelectorAll(".author-card").forEach(card=>{
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+    observer.observe(card);
+  });
+}
+
+function addAuthor(){
+  const nameInput=document.getElementById("name");
+  const roleInput=document.getElementById("role");
+  const imgInput=document.getElementById("img");
+  if(nameInput.value && roleInput.value && imgInput.value){
+    authors.push({
+      name:nameInput.value,
+      role:roleInput.value,
+      img:imgInput.value
+    });
+    localStorage.setItem("authors",JSON.stringify(authors));
+    render();
+    nameInput.value=""; roleInput.value=""; imgInput.value="";
+  }
+}
+
+render();
+
+/* ===== YEAR ===== */
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Project | Loyiha mualliflari</title>
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,.08);
+  --text:#fff;
+  --accent:#38bdf8;
+}
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.5s;
+}
+
+button{
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+
+.toggle{
+  background:var(--card);
+  border:none;
+  color:var(--text);
+  padding:10px 18px;
+  border-radius:20px;
+}
+
+/* ================= AUTHORS ================= */
+.authors{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.authors h1{
+  margin-bottom:25px;
+  font-size:2.5rem;
+  background:linear-gradient(90deg,#38bdf8,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.author-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.author-card{
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s, box-shadow .4s, transform .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.author-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,.25),transparent);
+  opacity:0;
+  transition:.5s;
+}
+
+.author-card:hover::before{
+  opacity:1;
+}
+
+.author-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--accent);
+  transition:.4s, box-shadow .3s;
+}
+
+.author-card:hover .avatar{
+  transform:scale(1.1);
+  box-shadow:0 0 20px var(--accent);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= FORM ================= */
+.form-box{
+  max-width:500px;
+  margin:80px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  transition:.4s;
+}
+
+.form-box input{
+  width:100%;
+  margin-bottom:15px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ================= GAMES ================= */
+.games{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  transition:.4s, box-shadow .4s, transform .4s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(56,189,248,.4);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:80px 20px 40px;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.15), transparent 60%),
+    linear-gradient(180deg, #020617, #000);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.footer-card{
+  background:rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:35px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(0,0,0,.45);
+  transition:.45s ease, transform .4s, box-shadow .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.footer-card:hover::before{
+  opacity:1;
+}
+
+.footer-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.footer-card h4{
+  font-size:1.2rem;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
+
+.footer-highlight{
+  color:var(--accent);
+  font-weight:500;
+}
+
+.copy{
+  text-align:center;
+  margin-top:60px;
+  font-size:.85rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🚀 Ultimate Project</h2>
+  <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+</header>
+
+<section class="authors">
+  <h1>Loyiha mualliflari</h1>
+  <div class="author-grid" id="authors"></div>
+</section>
+
+<section class="form-box">
+  <h3>➕ Muallif qo‘shish</h3>
+  <input id="name" placeholder="Ism">
+  <input id="role" placeholder="Yo‘nalish">
+  <input id="img" placeholder="Rasm URL">
+  <button onclick="addAuthor()">Qo‘shish</button>
+</section>
+
+<section class="games">
+  <h2>🎮 O‘yinlar menyusi</h2>
+  <div class="games-grid">
+    <div class="game">Memory Game</div>
+    <div class="game">IQ Test</div>
+    <div class="game">Logic Puzzle</div>
+    <div class="game">Cyber Quiz</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-card">
+      <h4>📌 Sayt hujjati</h4>
+      <p>
+        Ushbu veb-loyiha <span class="footer-highlight">ta’limiy, intellektual va
+        innovatsion</span> yo‘nalishda ishlab chiqilgan bo‘lib,
+        foydalanuvchilarning mantiqiy fikrlashini rivojlantirishga xizmat qiladi.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>💻 Texnologiyalar</h4>
+      <p>
+        Loyiha <span class="footer-highlight">Visual Studio Code</span> muhitida
+        yaratilgan.<br><br>
+        Dasturlash tillari:
+        <span class="footer-highlight">HTML5</span>,
+        <span class="footer-highlight">CSS3</span>,
+        <span class="footer-highlight">JavaScript (Vanilla)</span>.<br>
+        Hech qanday framework ishlatilmagan.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>🎯 Maqsad va auditoriya</h4>
+      <p>
+        Ushbu sayt <span class="footer-highlight">o‘quvchilar, yosh dasturchilar,
+        o‘qituvchilar</span> hamda texnologiyaga qiziquvchi barcha foydalanuvchilar
+        uchun mo‘ljallangan.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © <span id="year"></span> Ultimate Project — Barcha huquqlar himoyalangan
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* ===== AUTHORS DATA ===== */
+let authors = JSON.parse(localStorage.getItem("authors")) || [
+  {name:"Azizbek",role:"Frontend & Game Developer",img:"images/azizbek.jpg"}
+];
+
+function render(){
+  const box=document.getElementById("authors");
+  box.innerHTML="";
+  authors.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="author-card";
+    div.innerHTML=`
+      <div class="avatar"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/120/38bdf8/000?text=No+Image'"></div>
+      <h3>${a.name}</h3>
+      <p>${a.role}</p>
+    `;
+    box.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),100);
+  });
+
+  // Scroll anim
+  document.querySelectorAll(".author-card").forEach(card=>{
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+    observer.observe(card);
+  });
+}
+
+function addAuthor(){
+  const nameInput=document.getElementById("name");
+  const roleInput=document.getElementById("role");
+  const imgInput=document.getElementById("img");
+  if(nameInput.value && roleInput.value && imgInput.value){
+    authors.push({
+      name:nameInput.value,
+      role:roleInput.value,
+      img:imgInput.value
+    });
+    localStorage.setItem("authors",JSON.stringify(authors));
+    render();
+    nameInput.value=""; roleInput.value=""; imgInput.value="";
+  }
+}
+
+render();
+
+/* ===== YEAR ===== */
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Project | Loyiha mualliflari</title>
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,.08);
+  --text:#fff;
+  --accent:#38bdf8;
+}
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.5s;
+}
+
+button{
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+
+.toggle{
+  background:var(--card);
+  border:none;
+  color:var(--text);
+  padding:10px 18px;
+  border-radius:20px;
+}
+
+/* ================= AUTHORS ================= */
+.authors{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.authors h1{
+  margin-bottom:25px;
+  font-size:2.5rem;
+  background:linear-gradient(90deg,#38bdf8,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.author-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.author-card{
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s, box-shadow .4s, transform .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.author-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,.25),transparent);
+  opacity:0;
+  transition:.5s;
+}
+
+.author-card:hover::before{
+  opacity:1;
+}
+
+.author-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--accent);
+  transition:.4s, box-shadow .3s;
+}
+
+.author-card:hover .avatar{
+  transform:scale(1.1);
+  box-shadow:0 0 20px var(--accent);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= FORM ================= */
+.form-box{
+  max-width:500px;
+  margin:80px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  transition:.4s;
+}
+
+.form-box input{
+  width:100%;
+  margin-bottom:15px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ================= GAMES ================= */
+.games{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  transition:.4s, box-shadow .4s, transform .4s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(56,189,248,.4);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:80px 20px 40px;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.15), transparent 60%),
+    linear-gradient(180deg, #020617, #000);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.footer-card{
+  background:rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:35px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(0,0,0,.45);
+  transition:.45s ease, transform .4s, box-shadow .4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.footer-card:hover::before{
+  opacity:1;
+}
+
+.footer-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 55px rgba(56,189,248,.5);
+}
+
+.footer-card h4{
+  font-size:1.2rem;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
+
+.footer-highlight{
+  color:var(--accent);
+  font-weight:500;
+}
+
+.copy{
+  text-align:center;
+  margin-top:60px;
+  font-size:.85rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🚀 Ultimate Project</h2>
+  <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+</header>
+
+<section class="authors">
+  <h1>Loyiha mualliflari</h1>
+  <div class="author-grid" id="authors"></div>
+</section>
+
+<section class="form-box">
+  <h3>➕ Muallif qo‘shish</h3>
+  <input id="name" placeholder="Ism">
+  <input id="role" placeholder="Yo‘nalish">
+  <input id="img" placeholder="Rasm URL">
+  <button onclick="addAuthor()">Qo‘shish</button>
+</section>
+
+<section class="games">
+  <h2>🎮 O‘yinlar menyusi</h2>
+  <div class="games-grid">
+    <div class="game">Memory Game</div>
+    <div class="game">IQ Test</div>
+    <div class="game">Logic Puzzle</div>
+    <div class="game">Cyber Quiz</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-card">
+      <h4>📌 Sayt hujjati</h4>
+      <p>
+        Ushbu veb-loyiha <span class="footer-highlight">ta’limiy, intellektual va
+        innovatsion</span> yo‘nalishda ishlab chiqilgan bo‘lib,
+        foydalanuvchilarning mantiqiy fikrlashini rivojlantirishga xizmat qiladi.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>💻 Texnologiyalar</h4>
+      <p>
+        Loyiha <span class="footer-highlight">Visual Studio Code</span> muhitida
+        yaratilgan.<br><br>
+        Dasturlash tillari:
+        <span class="footer-highlight">HTML5</span>,
+        <span class="footer-highlight">CSS3</span>,
+        <span class="footer-highlight">JavaScript (Vanilla)</span>.<br>
+        Hech qanday framework ishlatilmagan.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>🎯 Maqsad va auditoriya</h4>
+      <p>
+        Ushbu sayt <span class="footer-highlight">o‘quvchilar, yosh dasturchilar,
+        o‘qituvchilar</span> hamda texnologiyaga qiziquvchi barcha foydalanuvchilar
+        uchun mo‘ljallangan.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © <span id="year"></span> Ultimate Project — Barcha huquqlar himoyalangan
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* ===== AUTHORS DATA ===== */
+let authors = JSON.parse(localStorage.getItem("authors")) || [
+  {name:"Azizbek",role:"Frontend & Game Developer",img:"images/azizbek.jpg"}
+];
+
+function render(){
+  const box=document.getElementById("authors");
+  box.innerHTML="";
+  authors.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="author-card";
+    div.innerHTML=`
+      <div class="avatar"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/120/38bdf8/000?text=No+Image'"></div>
+      <h3>${a.name}</h3>
+      <p>${a.role}</p>
+    `;
+    box.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),100);
+  });
+
+  // Scroll anim
+  document.querySelectorAll(".author-card").forEach(card=>{
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+    observer.observe(card);
+  });
+}
+
+function addAuthor(){
+  const nameInput=document.getElementById("name");
+  const roleInput=document.getElementById("role");
+  const imgInput=document.getElementById("img");
+  if(nameInput.value && roleInput.value && imgInput.value){
+    authors.push({
+      name:nameInput.value,
+      role:roleInput.value,
+      img:imgInput.value
+    });
+    localStorage.setItem("authors",JSON.stringify(authors));
+    render();
+    nameInput.value=""; roleInput.value=""; imgInput.value="";
+  }
+}
+
+render();
+
+/* ===== YEAR ===== */
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Project | Loyiha mualliflari</title>
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,.08);
+  --text:#fff;
+  --accent:#38bdf8;
+}
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.4s;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+
+.toggle{
+  background:var(--card);
+  border:none;
+  color:var(--text);
+  padding:10px 18px;
+  border-radius:20px;
+}
+
+/* ================= AUTHORS ================= */
+.authors{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.authors h1{
+  margin-bottom:25px;
+}
+
+.author-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.author-card{
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s;
+  position:relative;
+  overflow:hidden;
+}
+
+.author-card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--accent);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= FORM ================= */
+.form-box{
+  max-width:500px;
+  margin:80px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+}
+
+.form-box input{
+  width:100%;
+  margin-bottom:15px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ================= GAMES ================= */
+.games{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  transition:.3s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:80px 20px 40px;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.15), transparent 60%),
+    linear-gradient(180deg, #020617, #000);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.footer-card{
+  background:rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:35px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(0,0,0,.45);
+  transition:.45s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.footer-card:hover::before{
+  opacity:1;
+}
+
+.footer-card:hover{
+  transform:translateY(-10px);
+}
+
+.footer-card h4{
+  font-size:1.1rem;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
+
+.footer-highlight{
+  color:var(--accent);
+  font-weight:500;
+}
+
+.copy{
+  text-align:center;
+  margin-top:60px;
+  font-size:.85rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🚀 Ultimate Project</h2>
+  <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+</header>
+
+<section class="authors">
+  <h1>Loyiha mualliflari</h1>
+  <div class="author-grid" id="authors"></div>
+</section>
+
+<section class="form-box">
+  <h3>➕ Muallif qo‘shish</h3>
+  <input id="name" placeholder="Ism">
+  <input id="role" placeholder="Yo‘nalish">
+  <input id="img" placeholder="Rasm URL">
+  <button onclick="addAuthor()">Qo‘shish</button>
+</section>
+
+<section class="games">
+  <h2>🎮 O‘yinlar menyusi</h2>
+  <div class="games-grid">
+    <div class="game">Memory Game</div>
+    <div class="game">IQ Test</div>
+    <div class="game">Logic Puzzle</div>
+    <div class="game">Cyber Quiz</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-card">
+      <h4>📌 Sayt hujjati</h4>
+      <p>
+        Ushbu veb-loyiha <span class="footer-highlight">ta’limiy, intellektual va
+        innovatsion</span> yo‘nalishda ishlab chiqilgan bo‘lib,
+        foydalanuvchilarning mantiqiy fikrlashini rivojlantirishga xizmat qiladi.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>💻 Texnologiyalar</h4>
+      <p>
+        Loyiha <span class="footer-highlight">Visual Studio Code</span> muhitida
+        yaratilgan.<br><br>
+        Dasturlash tillari:
+        <span class="footer-highlight">HTML5</span>,
+        <span class="footer-highlight">CSS3</span>,
+        <span class="footer-highlight">JavaScript (Vanilla)</span>.<br>
+        Hech qanday framework ishlatilmagan.
+      </p>
+    </div>
+
+    <div class="footer-card">
+      <h4>🎯 Maqsad va auditoriya</h4>
+      <p>
+        Ushbu sayt <span class="footer-highlight">o‘quvchilar, yosh dasturchilar,
+        o‘qituvchilar</span> hamda texnologiyaga qiziquvchi barcha foydalanuvchilar
+        uchun mo‘ljallangan.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © <span id="year"></span> Ultimate Project — Barcha huquqlar himoyalangan
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* ===== AUTHORS DATA ===== */
+let authors = JSON.parse(localStorage.getItem("authors")) || [
+  {name:"Azizbek",role:"Frontend & Game Developer",img:"images/azizbek.jpg"}
+];
+
+function render(){
+  const box=document.getElementById("authors");
+  box.innerHTML="";
+  authors.forEach(a=>{
+    const div=document.createElement("div");
+    div.className="author-card";
+    div.innerHTML=`
+      <div class="avatar"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/120/38bdf8/000?text=No+Image'"></div>
+      <h3>${a.name}</h3>
+      <p>${a.role}</p>
+    `;
+    box.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),100);
+  });
+}
+
+function addAuthor(){
+  const nameInput=document.getElementById("name");
+  const roleInput=document.getElementById("role");
+  const imgInput=document.getElementById("img");
+  if(nameInput.value && roleInput.value && imgInput.value){
+    authors.push({
+      name:nameInput.value,
+      role:roleInput.value,
+      img:imgInput.value
+    });
+    localStorage.setItem("authors",JSON.stringify(authors));
+    render();
+    nameInput.value=""; roleInput.value=""; imgInput.value="";
+  }
+}
+
+render();
+
+/* ===== YEAR ===== */
+document.getElementById("year").textContent=new Date().getFullYear();
+
+/* ===== SCROLL ANIMATION ===== */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:0.2});
+
+document.querySelectorAll(".author-card").forEach(card=>observer.observe(card));
+</script>
+
+</body>
+</html>
